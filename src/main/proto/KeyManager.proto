@@ -21,6 +21,10 @@ service KeyManagerConsultaGrpcService {
   rpc consultar (ConsultaChaveRequest) returns (ConsultaChaveResponse) {}
 }
 
+service KeyManagerListarGrpcService {
+  rpc listar (ListaChaveRequest) returns (ListaChaveResponse) {}
+}
+
 // Nova Chave
 
 message NovaChaveRequest {
@@ -79,6 +83,23 @@ message ConsultaChaveResponse {
   ChavePix chave = 3;
 }
 
+// Listar
+
+message ListaChaveRequest {
+  string indentificador = 1;
+}
+
+message ListaChaveResponse {
+  message chave {
+    int64 idPix = 1;
+    TipoChave tipoChave = 2;
+    string valorChave = 3;
+    TipoConta tipoConta = 4;
+  }
+
+  string identificador = 1;
+  repeated chave chaves = 2;
+}
 
 enum TipoConta {
   NULO = 0;

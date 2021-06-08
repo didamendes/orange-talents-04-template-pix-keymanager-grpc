@@ -15,8 +15,6 @@ import javax.validation.constraints.Size
 @Introspected
 sealed class Filtro {
 
-    val logger = LoggerFactory.getLogger(this::class.java)
-
     abstract fun filtra(repository: ChavePixRepository, bcClient: PixKeysClient): ChavePixInfo
 
     @Introspected
@@ -28,7 +26,6 @@ sealed class Filtro {
         fun uuidIdentificador() = UUID.fromString(identificador)
 
         override fun filtra(repository: ChavePixRepository, bcClient: PixKeysClient): ChavePixInfo {
-            logger.info("Consultando chave Pix '${idPix}' no sistema interno")
 
             return repository.findById(idPix)
                 .filter { it.pertenceAo(uuidIdentificador()) }
@@ -41,7 +38,6 @@ sealed class Filtro {
     @Introspected
     data class PorChave(@field:NotBlank @field:Size(max = 77) val chave: String): Filtro() {
         override fun filtra(repository: ChavePixRepository, bcClient: PixKeysClient): ChavePixInfo {
-            logger.info("Consultando chave Pix '${chave}' no sistema interno")
 
             return repository.findByValorChave(chave)
                 .map(ChavePixInfo::of)
