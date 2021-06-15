@@ -3,10 +3,15 @@ micronaut:
     name: keymanagerGrpc
 datasources:
   default:
-    url: jdbc:mysql://localhost:3306/keymanager_grpc?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://${BD_URL:localhost}:3306/keymanager_grpc?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
-    password: 123456
+    password: ${BD_SENHA:123456}
     schema-generate: CREATE_DROP
     dialect: MYSQL
 jpa.default.properties.hibernate.hbm2ddl.auto: update
+
+itau:
+  url: ${URL_ITAU:`http://localhost:9091`}
+bcb:
+  url: ${URL_BCB:`http://localhost:8082`}

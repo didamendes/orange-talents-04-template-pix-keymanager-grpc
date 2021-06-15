@@ -9,7 +9,7 @@ import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 import io.micronaut.http.client.annotation.Client
 
-@Client("http://localhost:8082/api/v1/pix")
+@Client("\${bcb.url}/api/v1/pix")
 interface PixKeysClient {
 
     @Post(uri = "/keys", produces = [MediaType.APPLICATION_XML], consumes = [MediaType.APPLICATION_XML])

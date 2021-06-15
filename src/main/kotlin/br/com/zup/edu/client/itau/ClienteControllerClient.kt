@@ -5,7 +5,7 @@ import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.QueryValue
 import io.micronaut.http.client.annotation.Client
 
-@Client("http://localhost:9091/api/v1/clientes")
+@Client("\${itau.url}/api/v1/clientes")
 interface ClienteControllerClient {
 
     @Get(uri = "/{clienteId}/contas{?tipo}")
